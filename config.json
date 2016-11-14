@@ -1,0 +1,26 @@
+{
+  "timeout": "3s",
+  "thruk_db": {
+    "dsn": "tcp(localhost:3306)",
+    "db": "thruk",
+    "user": "thruk",
+    "password": "thruk"
+  },
+  "icinga_dbname": "icinga",
+  "icinga_dbuser": "thruk",
+  "icinga_dbpassword": "thruk",
+  "icinga_db": [
+    {
+      "dsn": "tcp(192.168.44.11:3306)",
+      "db": "icinga",
+      "user": "thruk",
+      "password": "thruk"
+    },
+    {
+      "dsn": "tcp(192.168.44.12:3306)",
+      "db": "icinga",
+      "user": "thruk",
+      "password": "thruk"
+    }
+  ]
+}
