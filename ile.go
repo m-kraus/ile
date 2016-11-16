@@ -5,6 +5,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -73,14 +74,24 @@ func LoadConfig(path string) Configuration {
 func main() {
 
 	var (
+		flagConfig       string
 		query            string
 		thrukstatustable string
 		thruklastupdate  int
 	)
 
+	// Parse flag -c for config file
+	flag.StringVar(&flagConfig, "c", "", "Absolute path of ile config file.")
+	flag.Parse()
+
+	// Set default if no config file is given
+	if flagConfig == "" {
+		dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
+		flagConfig = dir + "/ile_config.json"
+	}
+
 	// Load configuration
-	dir, _ := filepath.Abs(filepath.Dir(os.Args[0]))
-	config := LoadConfig(dir + "/config.json")
+	config := LoadConfig(flagConfig)
 
 	// Iintialize variables
 	thrukstatustable = ""
