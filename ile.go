@@ -11,7 +11,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"sort"
 	"strconv"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -42,18 +41,6 @@ type Logentry struct {
 
 // Logentries is a collection of logentries
 type Logentries []Logentry
-
-// Interface for sort by timestamp
-func (slice Logentries) Len() int {
-	return len(slice)
-}
-func (slice Logentries) Less(i, j int) bool {
-	return slice[i].Timestamp < slice[j].Timestamp
-	// date: return slice[i].Timestamp.Before(slice[j].Timestamp)
-}
-func (slice Logentries) Swap(i, j int) {
-	slice[i], slice[j] = slice[j], slice[i]
-}
 
 // LoadConfig handles loading and parsing of JSON configuration file
 func LoadConfig(path string) Configuration {
@@ -177,8 +164,6 @@ func main() {
 		}
 
 	}
-
-	sort.Sort(icingalog)
 
 	for _, l := range icingalog {
 		fmt.Println("[" + strconv.Itoa(l.Timestamp) + "] " + l.Message)

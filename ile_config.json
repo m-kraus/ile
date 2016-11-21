@@ -6,9 +6,6 @@
     "user": "thruk",
     "password": "thruk"
   },
-  "icinga_dbname": "icinga",
-  "icinga_dbuser": "thruk",
-  "icinga_dbpassword": "thruk",
   "icinga_db": [
     {
       "dsn": "tcp(192.168.44.11:3306)",
